@@ -6,37 +6,71 @@ using System.Threading.Tasks;
 
 namespace EmpWage_OOPS
 {
-    internal class EmployeeAttendence
-    {
-        public static int EmployeeWage()
+    internal class EmployeeWage
+    {      
+            public string companyName;
+            public int maxDay;
+            public int maxHrs;
+            public int wagePerHr;
+            int empTotalWage = 0;
+
+        public EmployeeWage(string companyName, int maxDay, int maxHrs, int wagePerHr)
         {
-            const int IS_FULL_TIME = 1;
-            const int IS_ABSENT = 0;
-            const int EMP_RATE_PER_HOUR = 20;
-            
-
-            //Variables
-            int empHrs = 0;
+            this.companyName = companyName;
+            this.maxDay = maxDay;
+            this.maxHrs = maxHrs;
+            this.wagePerHr = wagePerHr;
+        }
 
 
-            Random random = new Random();
-            int empCheck = random.Next(0, 2);
-            if (empCheck == IS_FULL_TIME)
+        public void GetEmpWage()
+        {
+            int workingHrs = 0;
+            int day = 0;
+            int totalWorkingHrs = 0;
+
+
+            while (day < maxDay && totalWorkingHrs <= maxHrs)
             {
-                Console.WriteLine("Employee is doing fulltime");
-                empHrs = 8;
-            }
-            else
-            {
-                Console.WriteLine("Employee is absent to the work");
-                empHrs = 0;
-            }
 
-            // empHrs = 0;
-            
-            int empWage = EMP_RATE_PER_HOUR * empHrs;
-            return empWage;
+                Random random = new Random();
+                int empCheck = random.Next(0, 3);
+
+                //Constants
+                const int ABSENT = 0;
+                const int FULLTIME = 1;
+
+                switch (empCheck)
+                {
+                    case ABSENT:
+                        workingHrs = 0;
+                        break;
+
+                    case FULLTIME:
+                        workingHrs = 8;
+                        break;
+
+                    default:
+                        workingHrs = 4;
+                        break;
+                }
+
+                totalWorkingHrs = totalWorkingHrs + workingHrs;
+
+                int empWage = wagePerHr * workingHrs;
+                empTotalWage = empTotalWage + empWage;
+
+                //Console.WriteLine($"Employee day {day + 1} wage is {empWage}");
+                day++;
+            }
 
         }
+
+        public string ToString()
+        {
+            return "\nTotal employee wage for company " + companyName + " is " + empTotalWage;
+
+        }
+
     }
 }
