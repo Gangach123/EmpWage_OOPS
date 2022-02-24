@@ -33,6 +33,5 @@ namespace EmpWage_OOPS
             return "\nTotal employee wage for company " + companyName + " is " + totalWage;
             Console.WriteLine(totalWage);
         }
-
     }
 }
