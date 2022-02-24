@@ -14,5 +14,6 @@ namespace EmpWage_OOPS
             employeeWageBuilder.AddEmployeeInfo("BigBazar", 23, 110, 22);
             employeeWageBuilder.CalWage();
         }
+
     }
 }

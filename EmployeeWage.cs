@@ -31,7 +31,7 @@ namespace EmpWage_OOPS
         public string ToString()
         {
             return "\nTotal employee wage for company " + companyName + " is " + totalWage;
-
+            Console.WriteLine(totalWage);
         }
 
     }
